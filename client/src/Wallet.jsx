@@ -1,6 +1,9 @@
 import server from "./server";
 
-function Wallet({ address, setAddress, balance, setBalance }) {
+function Wallet({ address, setAddress, balance, setBalance, pubKey, setPubKey }) {
+  
+  const setValue = (setter) => (evt) => setter(evt.target.value);
+
   async function onChange(evt) {
     const address = evt.target.value;
     setAddress(address);
@@ -21,6 +24,11 @@ function Wallet({ address, setAddress, balance, setBalance }) {
       <label>
         Wallet Address
         <input placeholder="Type an address, for example: 0x1" value={address} onChange={onChange}></input>
+      </label>
+
+      <label>
+        Public Key
+        <input placeholder="Type your public key" value={pubKey} onChange={setValue(setPubKey)}></input>
       </label>
 
       <div className="balance">Balance: {balance}</div>
